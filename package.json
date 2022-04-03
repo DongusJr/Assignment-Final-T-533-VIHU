@@ -17,6 +17,7 @@
     "prisma:reset": "prisma migrate reset --force"
   },
   "dependencies": {
+    "@datadog/browser-rum": "^4.7.0",
     "@prisma/client": "^3.9.2",
     "axios": "^0.26.0",
     "date-fns": "^2.28.0",
