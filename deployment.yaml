@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: todo-app
+  name: tic-tac-toe-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: todo-app
+      app: tic-tac-toe-app
       version: v1
   template:
     metadata:
       labels:
-        app: todo-app
+        app: tic-tac-toe-app
         version: v1
     spec:
       containers:
       - image: $IMAGE
         imagePullPolicy: Always
-        name: todo-app
+        name: tic-tac-toe-app
         ports:
           - containerPort: 3000
         env:
