@@ -54,34 +54,34 @@ jobs:
           wait-on-timeout: 120
           command: npm run test:e2e
           
-#       - name: 📷🗿 Screenshot artifact
-#         uses: actions/upload-artifact@v2
-#         if: failure()
-#         with:
-#           name: cypress-screenshots
-#           path: cypress/screenshots
-        
-#       - name: 🎬🗿 video artifact
-#         uses: actions/upload-artifact@v2
-#         if: always()
-#         with:
-#           name: cypress-videos
-#           path: cypress/videos
-  
-#   ui-test_unit-test:
-#     name: 🐙🃏 React-Testing-Library\Jest run
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: 🔔 Checkout
-#         uses: actions/checkout@v2
-        
-#       - name: 👷‍♀️ Setup node
-#         uses: actions/setup-node@v2
-#         with:
-#           node-version: 16
-          
-#       - name: ⬇ Download dependancies
-#         uses: bahmutov/npm-install@v1
-        
-#       - name: 🃏 Run jest
-#         run: npm run test
+      - name: 📷🗿 Screenshot artifact
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+
+      - name: 🎬🗿 video artifact
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
+
+  ui-test_unit-test:
+    name: 🐙🃏 React-Testing-Library\Jest run
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔔 Checkout
+        uses: actions/checkout@v2
+
+      - name: 👷‍♀️ Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: ⬇ Download dependancies
+        uses: bahmutov/npm-install@v1
+
+      - name: 🃏 Run jest
+        run: npm run test
