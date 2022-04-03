@@ -18,7 +18,7 @@ jobs:
         image: postgres
         
         env:
-          POSTGRES_USER: postgres
+          POSTGRES_USER: posgres
           POSTGRES_PASSWORD: postgres
         
         options: >-
@@ -43,6 +43,9 @@ jobs:
         
       - name: prismainit
         run: npm run prisma:init
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/postgres
+          
         
       - name: 🤖 Cypress run
         uses: cypress-io/github-action@v2
