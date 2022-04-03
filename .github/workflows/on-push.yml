@@ -29,6 +29,9 @@ jobs:
         ports:
           - 5432:5432
     
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/on-push
+    
     steps:
       - name: 🔔 Checkout
         uses: actions/checkout@v2
@@ -41,12 +44,9 @@ jobs:
       - name: ⬇ Download dependancies
         uses: bahmutov/npm-install@v1
         
-      - name: prismainit
+      - name: 🔹 prisma migrate
         run: npm run prisma:init
-        env:
-          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/postgres
-          
-        
+    
       - name: 🤖 Cypress run
         uses: cypress-io/github-action@v2
         with:
