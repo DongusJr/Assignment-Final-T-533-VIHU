@@ -2,6 +2,21 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
+import { datadogRum } from '@datadog/browser-rum';
+    
+datadogRum.init({
+    applicationId: 'f578a993-5cc1-4d81-bf43-310a2de52c79',
+    clientToken: 'pub207237f42b2ea3f5dc6e93b58c069cd8',
+    site: 'datadoghq.eu',
+    service:'tic-tac-toe-app',
+    // Specify a version number to identify the deployed version of your application in Datadog 
+    // version: '1.0.0',
+    sampleRate: 100,
+    trackInteractions: true,
+    defaultPrivacyLevel: 'mask-user-input'
+});
+    
+datadogRum.startSessionReplayRecording();
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

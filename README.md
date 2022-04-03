@@ -22,7 +22,9 @@ The Project is a NextJS application with a Postgres database to keep track of th
 
 - Currently the game can only tell when someone wins, but not when there is a draw. Write a test for such function and then implement it and add that to the game.
 - Should the game be playable without the players names ?
+    I added so you don't have to supply names, you will have the default ❌ and ⭕ names.
 - There is an outdated library there somewhere, can you spot it ?
+    The Moment library is the outdated library
 - There are no unit tests. Add them.
 - There are no ui integration tests. Add them.
 - There are no e2e tests. Add them.
@@ -40,6 +42,8 @@ The Project is a NextJS application with a Postgres database to keep track of th
 - Create a dashboard to monitor the health of the application.
 - Add a screenshot of the dashboard to this README.md file
 
+Image of datadog:
+https://imgur.com/a/RpRuEpa
 ---
 
 ### Prerequisite
