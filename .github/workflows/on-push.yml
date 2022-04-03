@@ -16,11 +16,9 @@ jobs:
     services:
       postgres:
         image: postgres
-        
         env:
-          POSTGRES_USER: posgres
+          POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-        
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -30,7 +28,7 @@ jobs:
           - 5432:5432
     
     env:
-      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/postgres
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/on-push
     
     steps:
       - name: 🔔 Checkout
@@ -50,38 +48,40 @@ jobs:
       - name: 🤖 Cypress run
         uses: cypress-io/github-action@v2
         with:
+          build: npm run build
+          start: npm run start
           wait-on: http://localhost:3000
           wait-on-timeout: 120
           command: npm run test:e2e
           
-      - name: 📷🗿 Screenshot artifact
-        uses: actions/upload-artifact@v2
-        if: failure()
-        with:
-          name: cypress-screenshots
-          path: cypress/screenshots
+#       - name: 📷🗿 Screenshot artifact
+#         uses: actions/upload-artifact@v2
+#         if: failure()
+#         with:
+#           name: cypress-screenshots
+#           path: cypress/screenshots
         
-      - name: 🎬🗿 video artifact
-        uses: actions/upload-artifact@v2
-        if: always()
-        with:
-          name: cypress-videos
-          path: cypress/videos
+#       - name: 🎬🗿 video artifact
+#         uses: actions/upload-artifact@v2
+#         if: always()
+#         with:
+#           name: cypress-videos
+#           path: cypress/videos
   
-  ui-test_unit-test:
-    name: 🐙🃏 React-Testing-Library\Jest run
-    runs-on: ubuntu-latest
-    steps:
-      - name: 🔔 Checkout
-        uses: actions/checkout@v2
+#   ui-test_unit-test:
+#     name: 🐙🃏 React-Testing-Library\Jest run
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: 🔔 Checkout
+#         uses: actions/checkout@v2
         
-      - name: 👷‍♀️ Setup node
-        uses: actions/setup-node@v2
-        with:
-          node-version: 16
+#       - name: 👷‍♀️ Setup node
+#         uses: actions/setup-node@v2
+#         with:
+#           node-version: 16
           
-      - name: ⬇ Download dependancies
-        uses: bahmutov/npm-install@v1
+#       - name: ⬇ Download dependancies
+#         uses: bahmutov/npm-install@v1
         
-      - name: 🃏 Run jest
-        run: npm run test
+#       - name: 🃏 Run jest
+#         run: npm run test
