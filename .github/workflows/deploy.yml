@@ -48,7 +48,7 @@ jobs:
         uses: datamonsters/replace-action@v1
         with:
           files: 'deployment.yaml'
-          replacements: '$IMAGE=${{ secrets.DOCKERHUB_USERNAME}}/${{env.IMAGE_NAME}}:${{ github.sha }},$DB_CONN_STRING={{ secrets.DB_CONN_STRING}}'
+          replacements: '$IMAGE=${{ secrets.DOCKERHUB_USERNAME}}/${{env.IMAGE_NAME}}:${{ github.sha }},$DB_CONN_STRING=${{ secrets.DB_CONN_STRING}}'
         
       # Sets the correct kubeconfig
         
