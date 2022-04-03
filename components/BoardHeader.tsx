@@ -1,6 +1,7 @@
 import { Game } from "../lib/gameStore";
 import {
   calculateWinner,
+  checkForDraw,
   getPlayerNameFromSign,
   getRandomPepTalk,
   getWhosTurnItIs,
@@ -15,7 +16,8 @@ interface Props {
 export function BoardHeader({ game }: Props) {
   const nextTurnSign = getWhosTurnItIs(game.moves);
   const winner = calculateWinner(game.moves);
-  if (winner) {
+  const isDraw = checkForDraw(game.moves);
+  if (winner || isDraw) {
     return <WinnerAnnouncement winner={winner} game={game} />;
   }
   return (

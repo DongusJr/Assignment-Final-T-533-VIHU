@@ -1,9 +1,10 @@
+import { listeners } from "process";
 import { Game } from "../lib/gameStore";
 import { EMOJI, pepTalks, Sign } from "./constants";
 
 export function calculateWinner(
   squares: Sign[] | string[]
-): Sign | null | string {
+): Sign | string {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -20,7 +21,18 @@ export function calculateWinner(
       return squares[a];
     }
   }
-  return null;
+  return "";
+}
+
+export function checkForDraw(
+  squares: Sign[] | string[]
+): boolean {
+  for (let i = 0; i < squares.length; i++) {
+    if (squares[i] == "") {
+      return false;
+    }
+  }
+  return true;
 }
 
 export function getPlayerNameFromSign(

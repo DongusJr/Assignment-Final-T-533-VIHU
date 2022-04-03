@@ -7,12 +7,23 @@ interface Props {
   winner: Sign | string;
   game: Game;
 }
-
+// export function calculateWinner(
+//   squares: Sign[] | string[]
+// ): Sign | null | string {
 export function WinnerAnnouncement({ winner, game }: Props) {
-  return (
-    <h1 className={styles.title}>
-      🎉🎊🍾🏆
-      <div data-testid="winnerAnnouncement">{getPlayerNameFromSign(winner, game)} Won</div>
-    </h1>
-  );
+  if (winner){
+    return (
+      <h1 className={styles.title}>
+        🎉🎊🍾🏆
+        <div data-testid="winnerAnnouncement">{getPlayerNameFromSign(winner, game)} Won</div>
+      </h1>
+    );
+  } else {
+    return (
+      <h1 className={styles.title}>
+        🤝
+        <div data-testid="winnerAnnouncement">Draw</div>
+      </h1>
+    );
+  }
 }
