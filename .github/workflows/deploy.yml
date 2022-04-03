@@ -42,9 +42,6 @@ jobs:
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
         
-        
-      - name: prisma init
-        run: npm run prisma:init
       # Updates a deployment file with the correct image
 
       - name: Replace image and connection string in yaml
