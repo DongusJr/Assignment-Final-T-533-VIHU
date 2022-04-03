@@ -13,6 +13,8 @@ import {server, emptyGameData} from "../mocks/index";
 // TODO setup your mock api here (from the mocks folder)
 // Feel free to add more files to test various other components
 
+const XEmoji = "❌"
+const OEmoji = "⭕"
 const player1Name = "Hello";
 const player2Name = "World";
 const expectedTitle = "Tic Tac Toe #️⃣";
@@ -76,17 +78,72 @@ describe("🕹 Tic-Tac-Toe App Home Page", () => {
 });
 
 describe("🕹 Tic-Tac-Toe App Game Page", () => {
-it.only('should display Player 1 won if player 1 wins', async () => {
-  server.use(emptyGameData.player1WonGame, emptyGameData.newGame);
-  const {render} = await getPage({
-    route: '/game/1',
+  it('should display Player 1 won if player 1 wins', async () => {
+    server.use(emptyGameData.player1WonGame);
+    const {render} = await getPage({
+      route: '/game/1',
+    });
+
+    render();
+
+    let winner = await screen.findByTestId("winnerAnnouncement");
+    expect(winner).toHaveTextContent(XEmoji + " " + player1Name + " Won")
+
+    let board =await screen.findAllByTestId("ticCell")
+    expect(board[0]).toHaveTextContent(XEmoji)
+    expect(board[1]).toHaveTextContent(XEmoji)
+    expect(board[2]).toHaveTextContent(XEmoji)
+    expect(board[3]).toHaveTextContent(OEmoji)
+    expect(board[4]).toHaveTextContent(OEmoji)
+    expect(board[5]).toHaveTextContent("")
+    expect(board[6]).toHaveTextContent("")
+    expect(board[7]).toHaveTextContent("")
+    expect(board[8]).toHaveTextContent("")
   });
 
-  render();
+  it('should display Player 2 won if player 2 wins', async () => {
+    server.use(emptyGameData.player2WonGame);
+    const {render} = await getPage({
+      route: '/game/2',
+    });
 
-  // let test = await screen.findByTestId("loadingText");
-  // expect(test).toHaveTextContent("haha")
-  let winner = await screen.findByTestId("winnerAnnouncement");
-  expect(winner).toHaveTextContent("Hello Won")
+    render();
+
+    let winner = await screen.findByTestId("winnerAnnouncement");
+    expect(winner).toHaveTextContent(OEmoji + " " + player2Name + " Won")
+    
+    let board =await screen.findAllByTestId("ticCell")
+    expect(board[0]).toHaveTextContent(XEmoji)
+    expect(board[1]).toHaveTextContent(XEmoji)
+    expect(board[2]).toHaveTextContent("")
+    expect(board[3]).toHaveTextContent(OEmoji)
+    expect(board[4]).toHaveTextContent(OEmoji)
+    expect(board[5]).toHaveTextContent(OEmoji)
+    expect(board[6]).toHaveTextContent("")
+    expect(board[7]).toHaveTextContent("")
+    expect(board[8]).toHaveTextContent(XEmoji)
+  });
+
+  it('should display draw in a drawn game', async () => {
+    server.use(emptyGameData.drawGame);
+    const {render} = await getPage({
+      route: '/game/3',
+    });
+
+    render();
+
+    let winner = await screen.findByTestId("winnerAnnouncement");
+    expect(winner).toHaveTextContent("🤝 Draw")
+
+    let board =await screen.findAllByTestId("ticCell")
+    expect(board[0]).toHaveTextContent(XEmoji)
+    expect(board[1]).toHaveTextContent(OEmoji)
+    expect(board[2]).toHaveTextContent(XEmoji)
+    expect(board[3]).toHaveTextContent(XEmoji)
+    expect(board[4]).toHaveTextContent(OEmoji)
+    expect(board[5]).toHaveTextContent(OEmoji)
+    expect(board[6]).toHaveTextContent(OEmoji)
+    expect(board[7]).toHaveTextContent(XEmoji)
+    expect(board[8]).toHaveTextContent(XEmoji)
+  });
 });
-})

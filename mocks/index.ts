@@ -22,7 +22,7 @@ export const emptyGameData = {
                 moves: EMPTY_MOVES,
                 }));
             }),
-    player1WonGame: rest.get('api/game/1', (req, res, ctx) => {
+    player1WonGame: rest.get('api/game', (req, res, ctx) => {
         return res(ctx.json(
             {id: "1",
             player1_name: "Hello",
@@ -30,6 +30,26 @@ export const emptyGameData = {
             moves: [Sign.X, Sign.X, Sign.X,
                     Sign.O, Sign.O, "",
                     "", "", ""],
+            }));
+        }),
+    player2WonGame: rest.get('api/game', (req, res, ctx) => {
+        return res(ctx.json(
+            {id: "2",
+            player1_name: "Hello",
+            player2_name: "World",
+            moves: [Sign.X, Sign.X, "",
+                    Sign.O, Sign.O, Sign.O,
+                    "", "", Sign.X],
+            }));
+        }),
+    drawGame: rest.get('api/game', (req, res, ctx) => {
+        return res(ctx.json(
+            {id: "3",
+            player1_name: "Hello",
+            player2_name: "World",
+            moves: [Sign.X, Sign.O, Sign.X,
+                    Sign.X, Sign.O, Sign.O,
+                    Sign.O, Sign.X, Sign.X],
             }));
         }),
 };
