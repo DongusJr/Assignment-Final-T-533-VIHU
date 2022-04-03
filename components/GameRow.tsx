@@ -19,11 +19,11 @@ export function GameRow({ game }: Props) {
           <div>
             <div data-testid="player1Info">
               {getPlayerNameFromSign(Sign.X, game)}
-              {winner === Sign.X ? "🎉" : null}
+              {winner === Sign.X ? "🎉" : winner === "" ? '🤝' : null}
             </div>
             <div data-testid="player2Info">
               {getPlayerNameFromSign(Sign.O, game)}
-              {winner === Sign.O ? "🎉" : null}
+              {winner === Sign.O ? "🎉" : winner === "" ? '🤝' : null}
             </div>
           </div>
           <div className={styles.dateFromNow}>
