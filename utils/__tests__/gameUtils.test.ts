@@ -27,20 +27,20 @@ describe("calculateWinner", () => {
   expect(result).toBe(Sign.X);
   });
 
-  it("should return null when there is no winner with not all moves complete", () => {
+  it("should return empty string when there is no winner with not all moves complete", () => {
     let unfinishedBoard = [Sign.X, "", Sign.O,
                           "", Sign.X, "",
                           Sign.X, "", Sign.O];
     const result = gameUtils.calculateWinner(unfinishedBoard);
-    expect(result).toBe(null);             
+    expect(result).toBe("");             
   });
 
-  it("should return null when there is no winner with all moves complete", () => {
+  it("should return empty string when there is no winner with all moves complete", () => {
     let finishedBoard = [Sign.X, Sign.O, Sign.O,
                           Sign.O, Sign.X, Sign.X,
                           Sign.X, Sign.X, Sign.O];
     const result = gameUtils.calculateWinner(finishedBoard);
-    expect(result).toBe(null);             
+    expect(result).toBe("");             
   });
 });
 
@@ -55,6 +55,7 @@ describe("calculateWinner", () => {
       player1_name: "testPlayer1",
       player2_name: "testPlayer2",
       moves: Array(9).fill(""),
+      createdAt: new Date("")
     };
   });
 

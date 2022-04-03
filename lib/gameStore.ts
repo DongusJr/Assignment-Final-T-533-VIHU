@@ -6,7 +6,7 @@ export interface Game {
   player1_name: string;
   player2_name?: string | null;
   moves: Sign[] | string[];
-  createdAt?: Date;
+  createdAt: Date;
 }
 
 const EMPTY_MOVES = Array(9).fill("");

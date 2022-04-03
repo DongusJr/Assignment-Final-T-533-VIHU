@@ -6,7 +6,7 @@ const EMPTY_MOVES = Array(9).fill("");
 // TODO create your mock api server here along with your mock data (the data should be in different files)
 export const server = setupServer();
 
-export const emptyGameData = {
+export const GameData = {
     emptyGame: rest.get('api/game', (req, res, ctx) => {
         return res(ctx.json(
             {id: "1",

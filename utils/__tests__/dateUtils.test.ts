@@ -3,7 +3,6 @@ import * as dateUtils from '../dateUtils';
 
 
 describe("getTimeFromNow", () => {
-
     beforeAll(() => {
         jest.useFakeTimers().setSystemTime(new Date("2022-01-01T00:00:01").getTime());
     })

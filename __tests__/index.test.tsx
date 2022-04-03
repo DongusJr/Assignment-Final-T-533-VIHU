@@ -6,7 +6,7 @@ import userEvent from "@testing-library/user-event";
 import Home from "../pages/index";
 import * as gameUtils from '../utils/gameUtils';
 import {Sign} from "../utils/constants";
-import {server, emptyGameData} from "../mocks/index";
+import {server, GameData} from "../mocks/index";
 
 // Good starting point: https://testing-library.com/docs/react-testing-library/example-intro
 
@@ -46,7 +46,7 @@ describe("🕹 Tic-Tac-Toe App Home Page", () => {
   })
 
   it('Should set names of players from input when new game is started', async () => {
-    server.use(emptyGameData.emptyGame, emptyGameData.newGame);
+    server.use(GameData.emptyGame, GameData.newGame);
     
     const {render} = await getPage({
       route: '/',
@@ -78,8 +78,10 @@ describe("🕹 Tic-Tac-Toe App Home Page", () => {
 });
 
 describe("🕹 Tic-Tac-Toe App Game Page", () => {
+  // For some reason this test only works if I use only,
+  // Other wise it gives a Network error, no idea why
   it.only('should display Player 1 won if player 1 wins', async () => {
-    server.use(emptyGameData.player1WonGame);
+    server.use(GameData.player1WonGame);
     const {render} = await getPage({
       route: '/game/1',
     });
@@ -102,7 +104,7 @@ describe("🕹 Tic-Tac-Toe App Game Page", () => {
   });
 
   it('should display Player 2 won if player 2 wins', async () => {
-    server.use(emptyGameData.player2WonGame);
+    server.use(GameData.player2WonGame);
     const {render} = await getPage({
       route: '/game/2',
     });
@@ -124,42 +126,26 @@ describe("🕹 Tic-Tac-Toe App Game Page", () => {
     expect(board[8]).toHaveTextContent(XEmoji)
   });
 
-  // it('should display draw in a drawn game', async () => {
-  //   server.use(emptyGameData.drawGame);
-  //   const {render} = await getPage({
-  //     route: '/game/3',
-  //   });
+  it('should display draw in a drawn game', async () => {
+    server.use(GameData.drawGame);
+    const {render} = await getPage({
+      route: '/game/3',
+    });
 
-  //   render();
+    render();
 
-  //   let winner = await screen.findByTestId("winnerAnnouncement");
-  //   expect(winner).toHaveTextContent("🤝 Draw")
+    let winner = await screen.findByTestId("winnerAnnouncement");
+    expect(winner).toHaveTextContent("Draw")
 
-  //   let board =await screen.findAllByTestId("ticCell")
-  //   expect(board[0]).toHaveTextContent(XEmoji)
-  //   expect(board[1]).toHaveTextContent(OEmoji)
-  //   expect(board[2]).toHaveTextContent(XEmoji)
-  //   expect(board[3]).toHaveTextContent(XEmoji)
-  //   expect(board[4]).toHaveTextContent(OEmoji)
-  //   expect(board[5]).toHaveTextContent(OEmoji)
-  //   expect(board[6]).toHaveTextContent(OEmoji)
-  //   expect(board[7]).toHaveTextContent(XEmoji)
-  //   expect(board[8]).toHaveTextContent(XEmoji)
-  // });
+    let board =await screen.findAllByTestId("ticCell")
+    expect(board[0]).toHaveTextContent(XEmoji)
+    expect(board[1]).toHaveTextContent(OEmoji)
+    expect(board[2]).toHaveTextContent(XEmoji)
+    expect(board[3]).toHaveTextContent(XEmoji)
+    expect(board[4]).toHaveTextContent(OEmoji)
+    expect(board[5]).toHaveTextContent(OEmoji)
+    expect(board[6]).toHaveTextContent(OEmoji)
+    expect(board[7]).toHaveTextContent(XEmoji)
+    expect(board[8]).toHaveTextContent(XEmoji)
+  });
 });
-
-// describe("🕹 Tic-Tac-Toe App Game List", () => {
-//   it.only('Should display nothing if no game has been played', async () => {
-//     server.use(emptyGameData.emptyGameList);
-//     const {render} = await getPage({
-//       route: '/game/list',
-//     });
-    
-//     // jest.useFakeTimers().setSystemTime(new Date('2022-01-01'));
-    
-//     render();
-
-//     let test = await screen.findByTestId("gamesText");
-//     expect(test).toHaveTextContent("All games")
-//   });
-// });
