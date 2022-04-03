@@ -11,7 +11,7 @@ COPY . .
 
 EXPOSE 3000
 
-RUN npm run prisma:init
+# RUN npm run prisma:init
 
 
 CMD ["npm", "run", "dev"]
