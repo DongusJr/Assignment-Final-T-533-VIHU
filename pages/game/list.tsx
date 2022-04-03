@@ -16,7 +16,7 @@ const GameList = () => {
 
   return (
     <div>
-      <h1>🎱 All games</h1>
+      <h1 data-testid="gamesText">🎱 All games</h1>
       <div>
         {gameList?.map((game) => {
           return <GameRow key={game.id} game={game} />;

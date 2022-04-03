@@ -14,14 +14,14 @@ export function GameRow({ game }: Props) {
   const winner = calculateWinner(game.moves);
   return (
     <Link href={`/game/${game.id}`}>
-      <div className={styles.row}>
+      <div data-testid="gameRow" className={styles.row}>
         <div className={styles.gameInfo}>
           <div>
-            <div>
+            <div data-testid="player1Info">
               {getPlayerNameFromSign(Sign.X, game)}
               {winner === Sign.X ? "🎉" : null}
             </div>
-            <div>
+            <div data-testid="player2Info">
               {getPlayerNameFromSign(Sign.O, game)}
               {winner === Sign.O ? "🎉" : null}
             </div>

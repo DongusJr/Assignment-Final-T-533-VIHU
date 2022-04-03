@@ -33,7 +33,7 @@ export default function Board({ onMove, moves, readOnly }: Props): JSX.Element {
   }
 
   return (
-    <div className={styles.container}>
+    <div data-testid="boardContainer" className={styles.container}>
       <div>
         <div>
           <Cell

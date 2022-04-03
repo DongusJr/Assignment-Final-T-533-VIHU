@@ -21,7 +21,7 @@ export function BoardHeader({ game }: Props) {
   return (
     <h1 className={styles.title}>
       {getRandomPepTalk()}
-      <div>{getPlayerNameFromSign(nextTurnSign, game)}</div>
+      <div data-testid="playerName">{getPlayerNameFromSign(nextTurnSign, game)}</div>
     </h1>
   );
 }

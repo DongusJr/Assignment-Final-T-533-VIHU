@@ -27,7 +27,7 @@ const GamePage = () => {
   if (!game) {
     return (
       <div>
-        <h1 className={styles.title}>Loading..🔃</h1>
+        <h1 className={styles.title} data-testid="loadingText">Loading..🔃</h1>
       </div>
     );
   }
