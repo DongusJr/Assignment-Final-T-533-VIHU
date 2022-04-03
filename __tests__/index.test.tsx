@@ -78,7 +78,7 @@ describe("🕹 Tic-Tac-Toe App Home Page", () => {
 });
 
 describe("🕹 Tic-Tac-Toe App Game Page", () => {
-  it('should display Player 1 won if player 1 wins', async () => {
+  it.only('should display Player 1 won if player 1 wins', async () => {
     server.use(emptyGameData.player1WonGame);
     const {render} = await getPage({
       route: '/game/1',
