@@ -124,26 +124,42 @@ describe("🕹 Tic-Tac-Toe App Game Page", () => {
     expect(board[8]).toHaveTextContent(XEmoji)
   });
 
-  it('should display draw in a drawn game', async () => {
-    server.use(emptyGameData.drawGame);
-    const {render} = await getPage({
-      route: '/game/3',
-    });
+  // it('should display draw in a drawn game', async () => {
+  //   server.use(emptyGameData.drawGame);
+  //   const {render} = await getPage({
+  //     route: '/game/3',
+  //   });
 
-    render();
+  //   render();
 
-    let winner = await screen.findByTestId("winnerAnnouncement");
-    expect(winner).toHaveTextContent("🤝 Draw")
+  //   let winner = await screen.findByTestId("winnerAnnouncement");
+  //   expect(winner).toHaveTextContent("🤝 Draw")
 
-    let board =await screen.findAllByTestId("ticCell")
-    expect(board[0]).toHaveTextContent(XEmoji)
-    expect(board[1]).toHaveTextContent(OEmoji)
-    expect(board[2]).toHaveTextContent(XEmoji)
-    expect(board[3]).toHaveTextContent(XEmoji)
-    expect(board[4]).toHaveTextContent(OEmoji)
-    expect(board[5]).toHaveTextContent(OEmoji)
-    expect(board[6]).toHaveTextContent(OEmoji)
-    expect(board[7]).toHaveTextContent(XEmoji)
-    expect(board[8]).toHaveTextContent(XEmoji)
-  });
+  //   let board =await screen.findAllByTestId("ticCell")
+  //   expect(board[0]).toHaveTextContent(XEmoji)
+  //   expect(board[1]).toHaveTextContent(OEmoji)
+  //   expect(board[2]).toHaveTextContent(XEmoji)
+  //   expect(board[3]).toHaveTextContent(XEmoji)
+  //   expect(board[4]).toHaveTextContent(OEmoji)
+  //   expect(board[5]).toHaveTextContent(OEmoji)
+  //   expect(board[6]).toHaveTextContent(OEmoji)
+  //   expect(board[7]).toHaveTextContent(XEmoji)
+  //   expect(board[8]).toHaveTextContent(XEmoji)
+  // });
 });
+
+// describe("🕹 Tic-Tac-Toe App Game List", () => {
+//   it.only('Should display nothing if no game has been played', async () => {
+//     server.use(emptyGameData.emptyGameList);
+//     const {render} = await getPage({
+//       route: '/game/list',
+//     });
+    
+//     // jest.useFakeTimers().setSystemTime(new Date('2022-01-01'));
+    
+//     render();
+
+//     let test = await screen.findByTestId("gamesText");
+//     expect(test).toHaveTextContent("All games")
+//   });
+// });

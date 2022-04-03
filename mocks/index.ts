@@ -52,4 +52,15 @@ export const emptyGameData = {
                     Sign.O, Sign.X, Sign.X],
             }));
         }),
+    // emptyGameList: rest.get('api/list', (req, res, ctx) => {
+    //     return res(ctx.json([
+    //         {id: "3",
+    //         createdAt: "2022-01-01T00:00:00.123Z",
+    //         player1_name: "Hello",
+    //         player2_name: "World",
+    //         moves: [Sign.X, Sign.O, Sign.X,
+    //                 Sign.X, Sign.O, Sign.O,
+    //                 Sign.O, Sign.X, Sign.X],
+    //         }],));
+    //     }),
 };
